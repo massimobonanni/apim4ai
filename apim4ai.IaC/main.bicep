@@ -29,5 +29,15 @@ module apim 'apim.bicep' = {
      namePrefix: 'apim'
      publisherEmail:'admin@contoso.com'
      publisherName:'Contoso'
+    appInsightName:appInsight.outputs.appInsightsName
+  }
+}
+
+module appInsight 'appInsight.bicep'={
+  name: 'appInsight'
+  scope: resourceGroup
+  params: {
+    namePrefix: 'appinsight'
+    location: location
   }
 }

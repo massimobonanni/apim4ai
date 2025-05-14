@@ -10,7 +10,15 @@ param publisherEmail string
 @description('The publisher name for the API Management service')
 param publisherName string
 
+@description('The Application Insight name')
+param appInsightName string 
+
 var apimName = '${namePrefix}-${location}-${uniqueString(resourceGroup().id,subscription().id)}'
+
+// Reference the Application Insights resource
+resource appInsights 'Microsoft.Insights/components@2020-02-02' existing = {
+  name: appInsightName
+}
 
 // Create APIM service
 resource apim 'Microsoft.ApiManagement/service@2023-03-01-preview' = {
@@ -22,7 +30,7 @@ resource apim 'Microsoft.ApiManagement/service@2023-03-01-preview' = {
   }
   properties: {
     publisherEmail: publisherEmail
-    publisherName: publisherName
+    publisherName: publisherName 
   }
 }
 

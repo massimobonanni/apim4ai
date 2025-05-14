@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apim4ai.IaC", "apim4ai.IaC"
 	ProjectSection(SolutionItems) = preProject
 		apim4ai.IaC\aiServices.bicep = apim4ai.IaC\aiServices.bicep
 		apim4ai.IaC\apim.bicep = apim4ai.IaC\apim.bicep
+		apim4ai.IaC\appInsight.bicep = apim4ai.IaC\appInsight.bicep
 		apim4ai.IaC\main.bicep = apim4ai.IaC\main.bicep
 	EndProjectSection
 EndProject
