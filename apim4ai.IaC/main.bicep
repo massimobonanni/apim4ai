@@ -20,3 +20,14 @@ module aoaiServices 'aiServices.bicep' = {
     skuName: 'S0'
   }
 }
+
+module apim 'apim.bicep' = {
+  name: 'apim'
+  scope: resourceGroup
+  params: {
+     location: location
+     namePrefix: 'apim'
+     publisherEmail:'admin@contoso.com'
+     publisherName:'Contoso'
+  }
+}
