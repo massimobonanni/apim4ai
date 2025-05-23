@@ -1,4 +1,5 @@
-﻿using apim4ai.Console.Commands.TokenLimit;
+﻿using apim4ai.Console.Commands.SemanticCache;
+using apim4ai.Console.Commands.TokenLimit;
 using apim4ai.Console.Utilities;
 using Azure;
 using Azure.AI.OpenAI;
@@ -15,6 +16,7 @@ ConsoleUtility.WriteApplicationBanner();
 var rootCommand = new RootCommand("Apim4AI console");
 
 rootCommand.AddCommand(new TokenLimitCommand());
+rootCommand.AddCommand(new SemanticCacheCommand());
 
 return await rootCommand.InvokeAsync(args);
 
