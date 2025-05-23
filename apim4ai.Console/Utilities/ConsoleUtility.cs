@@ -4,6 +4,15 @@ namespace apim4ai.Console.Utilities
 {
     internal static class ConsoleUtility
     {
+        public static string ReadLine(ConsoleColor foregroundColor = ConsoleColor.White)
+        {
+            var currentForegroundColor = System.Console.ForegroundColor;
+            System.Console.ForegroundColor = foregroundColor;
+            var input = System.Console.ReadLine();
+            System.Console.ForegroundColor = currentForegroundColor;
+            return input;
+        }
+
         public static void WriteLine(string message = "", ConsoleColor foregroundColor = ConsoleColor.White)
         {
             var currentForegroundColor = System.Console.ForegroundColor;

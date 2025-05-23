@@ -19,25 +19,12 @@ namespace apim4ai.Console.Commands.TokenLimit
             ConsoleUtility.WriteLine("Token Limit Command", ConsoleColor.Cyan);
             ConsoleUtility.WriteLine("This command demonstrates the token limit policy.", ConsoleColor.Cyan);
             ConsoleUtility.WriteLine();
-            while (true)
-            {
-                ConsoleUtility.Write("You: ", ConsoleColor.Green);
-                System.Console.ForegroundColor = ConsoleColor.Green;
-                var input = System.Console.ReadLine();
-                System.Console.ResetColor();
 
-                // Exit if input is empty
-                if (string.IsNullOrWhiteSpace(input))
-                    break;
+            var chatManagement = new ChatManagement(chatClient);
 
-                // Stream response from LLM
-                ConsoleUtility.Write("LLM: ", ConsoleColor.Yellow);
-                await foreach (var token in chatClient.GetStreamingResponseAsync(input))
-                {
-                    ConsoleUtility.Write(token.Text, ConsoleColor.Yellow);
-                }
-                ConsoleUtility.WriteLine(string.Empty, ConsoleColor.Yellow);
-            }
+            await chatManagement.RunChatAsync(
+                onResponse: token => ConsoleUtility.Write(token.Text, ConsoleColor.Yellow),
+                onException: ex => ConsoleUtility.WriteLine(ex.Message, ConsoleColor.Red));
         }
     }
 }

@@ -34,7 +34,7 @@ namespace apim4ai.Console.Binders
                 );
 
             var chatClient = azureOpenAIClient.GetChatClient(deploymentName).AsIChatClient();
-
+          
             return chatClient;
         }
     }
