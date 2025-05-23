@@ -7,6 +7,14 @@
     "token-limit": {
       "commandName": "Project",
       "commandLineArgs": "token-limit -e https://apim4ai-northeurope.azure-api.net -k 061b7a176bd64cab86e868cf6f244482 -dn gpt-4o"
+    },
+    "semantic cache": {
+      "commandName": "Project",
+      "commandLineArgs": "semantic-cache -e https://apim4ai-northeurope.azure-api.net -k 558bd79951694239b639104fde683eba -dn gpt-4o"
+    },
+    "content safety": {
+      "commandName": "Project",
+      "commandLineArgs": "content-safety -e https://apim4ai-northeurope.azure-api.net -k 797da16f32e04dd5a895cf2af1ff087b -dn gpt-4o"
     }
   }
 }

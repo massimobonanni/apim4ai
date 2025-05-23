@@ -12,7 +12,8 @@ namespace apim4ai.Console.Utilities
         }
 
         public async Task RunStreamChatAsync(
-            Action<ChatResponseUpdate> onResponse,
+            Action<string> beforeRequest,
+            Action<ChatResponseUpdate,bool> onResponse,
             Action<Exception> onException)
         {
             while (true)
@@ -26,11 +27,12 @@ namespace apim4ai.Console.Utilities
                 ConsoleUtility.Write("LLM: ", ConsoleColor.Yellow);
                 try
                 {
+                    beforeRequest?.Invoke(input);
                     await foreach (var token in _chatClient.GetStreamingResponseAsync(input))
                     {
-                        onResponse?.Invoke(token);
+                        onResponse?.Invoke(token,false);
                     }
-                    ConsoleUtility.WriteLine(string.Empty, ConsoleColor.Yellow);
+                    onResponse.Invoke(null, true);
                 }
                 catch (Exception ex)
                 {
@@ -40,6 +42,7 @@ namespace apim4ai.Console.Utilities
         }
 
         public async Task RunChatAsync(
+            Action<string> beforeRequest,
             Action<ChatResponse> onResponse,
             Action<Exception> onException)
         {
@@ -54,6 +57,7 @@ namespace apim4ai.Console.Utilities
                 ConsoleUtility.Write("LLM: ", ConsoleColor.Yellow);
                 try
                 {
+                    beforeRequest?.Invoke(input);
                     var response = await _chatClient.GetResponseAsync(input);
                     onResponse?.Invoke(response);
                     ConsoleUtility.WriteLine(string.Empty, ConsoleColor.Yellow);

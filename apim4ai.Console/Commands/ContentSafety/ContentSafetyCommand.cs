@@ -2,11 +2,11 @@
 using Microsoft.Extensions.AI;
 using System.CommandLine;
 
-namespace apim4ai.Console.Commands.TokenLimit
+namespace apim4ai.Console.Commands.ContentSafety
 {
-    internal class TokenLimitCommand : Command
+    internal class ContentSafetyCommand : Command
     {
-        public TokenLimitCommand() : base("token-limit", "Call an API with token limit policy")
+        public ContentSafetyCommand() : base("content-safety", "Call an API with content safety policy")
         {
             var chatClientBinder = this.CreateChatClientBinder();
 
@@ -15,8 +15,8 @@ namespace apim4ai.Console.Commands.TokenLimit
 
         private async Task CommandHandler(IChatClient chatClient)
         {
-            ConsoleUtility.WriteLine("Token Limit Command", ConsoleColor.Cyan);
-            ConsoleUtility.WriteLine("This command demonstrates the token limit policy.", ConsoleColor.Cyan);
+            ConsoleUtility.WriteLine("Content Safety Command", ConsoleColor.Cyan);
+            ConsoleUtility.WriteLine("This command demonstrates the content safety policy.", ConsoleColor.Cyan);
             ConsoleUtility.WriteLine();
 
             var chatManagement = new ChatManagement(chatClient);
