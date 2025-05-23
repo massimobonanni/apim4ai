@@ -1,4 +1,5 @@
-﻿using apim4ai.Console.Utilities;
+﻿using apim4ai.Console.Commands.TokenLimit;
+using apim4ai.Console.Utilities;
 using Azure;
 using Azure.AI.OpenAI;
 using Microsoft.Extensions.AI;
@@ -13,7 +14,7 @@ ConsoleUtility.WriteApplicationBanner();
 
 var rootCommand = new RootCommand("Apim4AI console");
 
-//rootCommand.AddCommand(new AddImageToPersonCommand());
+rootCommand.AddCommand(new TokenLimitCommand());
 
 return await rootCommand.InvokeAsync(args);
 

@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "token-limit": {
+      "commandName": "Project",
+      "commandLineArgs": "token-limit -e https://apim4ai-northeurope.azure-api.net -k 973de319ff9e445ba9608852da8a158a -dn gpt-4o"
+    }
+  }
+}
