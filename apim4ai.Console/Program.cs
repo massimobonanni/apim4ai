@@ -1,10 +1,23 @@
-﻿using Azure;
+﻿using apim4ai.Console.Utilities;
+using Azure;
 using Azure.AI.OpenAI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.CommandLine;
+
+
+ConsoleUtility.WriteApplicationBanner();
+
+var rootCommand = new RootCommand("Apim4AI console");
+
+//rootCommand.AddCommand(new AddImageToPersonCommand());
+
+return await rootCommand.InvokeAsync(args);
+
+
 
 var hostBuilder = Host.CreateApplicationBuilder(args);
 hostBuilder.Configuration.AddUserSecrets<Program>();
