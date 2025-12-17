@@ -8,9 +8,13 @@ namespace apim4ai.Console.Commands.ContentSafety
     {
         public ContentSafetyCommand() : base("content-safety", "Call an API with content safety policy")
         {
-            var chatClientBinder = this.CreateChatClientBinder();
+            var chatClientOptions = this.AddChatClientOptions();
 
-            this.SetHandler(CommandHandler, chatClientBinder);
+            this.SetAction(async parseResult =>
+            {
+                var chatClient = parseResult.CreateChatClient(chatClientOptions);
+                await CommandHandler(chatClient);
+            });
         }
 
         private async Task CommandHandler(IChatClient chatClient)
