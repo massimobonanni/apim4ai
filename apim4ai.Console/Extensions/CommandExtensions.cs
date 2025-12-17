@@ -45,13 +45,20 @@ namespace System.CommandLine
             var apiKey = parseResult.GetValue(options.ApiKeyOption);
             var deploymentName = parseResult.GetValue(options.DeploymentNameOption);
 
+            if (string.IsNullOrEmpty(endpoint))
+                throw new InvalidOperationException("Endpoint is required. Provide it via --endpoint option or configuration.");
+            if (string.IsNullOrEmpty(apiKey))
+                throw new InvalidOperationException("API Key is required. Provide it via --api-key option or configuration.");
+            if (string.IsNullOrEmpty(deploymentName))
+                throw new InvalidOperationException("Deployment name is required. Provide it via --deployment-name option.");
+
             var azureOpenAIClient = new AzureOpenAIClient(
-                new Uri(endpoint!),
-                new AzureKeyCredential(apiKey!),
+                new Uri(endpoint),
+                new AzureKeyCredential(apiKey),
                 new AzureOpenAIClientOptions(AzureOpenAIClientOptions.ServiceVersion.V2024_12_01_Preview)
                 );
 
-            return azureOpenAIClient.GetChatClient(deploymentName!).AsIChatClient();
+            return azureOpenAIClient.GetChatClient(deploymentName).AsIChatClient();
         }
     }
 }
