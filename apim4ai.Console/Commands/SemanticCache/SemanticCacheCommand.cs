@@ -9,9 +9,13 @@ namespace apim4ai.Console.Commands.SemanticCache
     {
         public SemanticCacheCommand() : base("semantic-cache", "Call an API with semantic cache policy")
         {
-            var chatClientBinder = this.CreateChatClientBinder();
+            var chatClientOptions = this.AddChatClientOptions();
 
-            this.SetHandler(CommandHandler, chatClientBinder);
+            this.SetAction(async parseResult =>
+            {
+                var chatClient = parseResult.CreateChatClient(chatClientOptions);
+                await CommandHandler(chatClient);
+            });
         }
 
         private async Task CommandHandler(IChatClient chatClient)

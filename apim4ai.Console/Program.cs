@@ -7,10 +7,11 @@ using System.CommandLine;
 
 ConsoleUtility.WriteApplicationBanner();
 
-var rootCommand = new RootCommand("Apim4AI console");
+var rootCommand = new RootCommand();
+rootCommand.Description = "Apim4AI console";
 
-rootCommand.AddCommand(new TokenLimitCommand());
-rootCommand.AddCommand(new SemanticCacheCommand());
-rootCommand.AddCommand(new ContentSafetyCommand());
+rootCommand.Add(new TokenLimitCommand());
+rootCommand.Add(new SemanticCacheCommand());
+rootCommand.Add(new ContentSafetyCommand());
 
-return await rootCommand.InvokeAsync(args);
+return await rootCommand.Parse(args).InvokeAsync();
